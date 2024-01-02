@@ -17,6 +17,7 @@ Obvious checks
 ```
 
 Checks
-* Any number that's > 12? That is the year.
+* Number that is > 31 is year
+* Number that is > 12 is day
 * If two numbers are the same, then safe. EG: 01/01 is January 1.
 * 
