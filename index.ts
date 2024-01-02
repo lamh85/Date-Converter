@@ -1,13 +1,11 @@
 // september 1, 2020
 
-const run = input => {
+const run = (input: string) => {
   const inputSplit = input.split(/[^0-9a-zA-Z]/g)
 }
 
-const findMonthByName = inputSplit => {
-  inputSplit.forEach(part => {
-
-  })
+const findMonthByName = (inputSplit: (string | number)[]) => {
+  inputSplit.forEach((part) => {})
 }
 
 const MONTHS = [
@@ -22,5 +20,5 @@ const MONTHS = [
   'September',
   'October',
   'November',
-  'December'
+  'December',
 ]
