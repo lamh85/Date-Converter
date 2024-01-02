@@ -1,4 +1,8 @@
-# Example Flows
+# Purpose
+
+Create my own version of Moment JS: https://momentjs.com/
+
+# Problem Analyses
 
 ## Easiest example
 ```
