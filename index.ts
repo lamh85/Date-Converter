@@ -45,8 +45,24 @@ const commaSolution = (input: InputT): NormalizedT => {
     return ERROR_RESULT
   }
 
-  // Temporary for satisfying Typescript
-  return ERROR_RESULT
+  const dayMonth = commaSplit[0]
+  const dayMonthNormalized = resolveDayMonth(dayMonth)
+
+  if (!dayMonthNormalized.day || !dayMonthNormalized.month) {
+    return {
+      ...ERROR_RESULT,
+      ...dayMonthNormalized,
+      year,
+      status: 'error',
+    }
+  }
+
+  return {
+    year,
+    day: dayMonthNormalized.day,
+    month: dayMonthNormalized.month,
+    status: 'ok',
+  }
 }
 
 const resolveYear = (input: any): number | null => {
@@ -68,6 +84,15 @@ const resolveYear = (input: any): number | null => {
   const yearPadding = currentYear.slice(currentYear.length - 2)
   const concatenated = Number(`${yearPadding}${String(input)}`)
   return concatenated
+}
+
+type ResolvedDayMonthT = {
+  day: number | null
+  month: number | null
+}
+
+const resolveDayMonth = (input: string): ResolvedDayMonthT => {
+  return { day: null, month: null }
 }
 
 const findMonthByName = (inputSplit: (string | number)[]) => {
