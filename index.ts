@@ -20,10 +20,13 @@ const run = (input: InputT): NormalizedT => {
 
   // EG: september 1, 2020
   if (input.includes(',')) {
-    return commaSolution()
+    return commaSolution(input)
   }
 
   // const inputSplit = input.split(/[^0-9a-zA-Z]/g)
+
+  // Temporary for satisfying Typescript
+  return ERROR_RESULT
 }
 
 // Only accepted formats:
@@ -41,6 +44,9 @@ const commaSolution = (input: InputT): NormalizedT => {
   if (!year) {
     return ERROR_RESULT
   }
+
+  // Temporary for satisfying Typescript
+  return ERROR_RESULT
 }
 
 const resolveYear = (input: any): number | null => {
