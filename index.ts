@@ -91,11 +91,23 @@ type ResolvedDayMonthT = {
   month: number | null
 }
 
-// EG: "1 Sep(tember)", "Sep(tember) 1", etc
 const resolveDayMonth = (input: string): ResolvedDayMonthT => {
-  const tokenSplit = input.split(/[^A-Z0-9]/gi)
+  if (/[A-Z]/i.test(input)) {
+    // find month name
+    // EG: "1 Sep(tember)", "Sep(tember) 1", etc
+    // month.toLowerCase().includes(item.toLocaleLowerCase())
+  }
 
-  // "Easy" cases: has month name, has number greater than 12
+  if (/[0-9]/i.test(input)) {
+    return resolveNumberedDayMonth(input)
+  }
+
+  return { day: null, month: null }
+}
+
+// Only used if both day and month use numbers
+const resolveNumberedDayMonth = (input: string): ResolvedDayMonthT => {
+  const tokenSplit = input.split(/[^A-Z0-9]/gi)
 
   let tokenSplitMonthIndex: number | null = null
   let tokenSplitDayIndex: number | null = null
@@ -113,7 +125,12 @@ const resolveDayMonth = (input: string): ResolvedDayMonthT => {
     }
   })
 
-  // month.toLowerCase().includes(item.toLocaleLowerCase())
+  if (tokenSplitMonthIndex && tokenSplitDayIndex) {
+    const day = tokenSplit[tokenSplitDayIndex]
+    const month = tokenSplit[tokenSplitMonthIndex]
+
+    return { day: Number(day), month: Number(month) }
+  }
 
   return { day: null, month: null }
 }
